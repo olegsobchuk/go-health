@@ -1,0 +1,10 @@
+{{define "content"}}
+  <h1>Log In page</h1>
+
+  <form class="form" action="/session" method="post">
+    <input type="text" name="email" value="{{.login}}">
+    <input type="password" name="password" value="">
+    <input type="password" name="password_confirmation" value="">
+    <button type="submit" name="button">Log In</button>
+  </form>
+{{end}}
