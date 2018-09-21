@@ -10,6 +10,11 @@
   <body>
     I'm layout
     <br>
+    {{if .currentUser}}
+      <a href="/login">Log In</a> to start
+    {{else}}
+      <a href="/logout">Log Out</a>
+    {{end}}
     {{template "content" .}}
   </body>
 </html>

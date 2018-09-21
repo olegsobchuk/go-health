@@ -9,6 +9,15 @@
 
 [[projects]]
   branch = "master"
+  name = "github.com/gin-contrib/sessions"
+  packages = [
+    ".",
+    "cookie"
+  ]
+  revision = "58cbcf30135cc04c55e4499757142265d58e62d6"
+
+[[projects]]
+  branch = "master"
   name = "github.com/gin-contrib/sse"
   packages = ["."]
   revision = "22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae"
@@ -25,10 +34,53 @@
   version = "v1.3.0"
 
 [[projects]]
+  name = "github.com/go-pg/migrations"
+  packages = ["."]
+  revision = "91a824bb86a910befc819700ec6e21858c41b022"
+  version = "v6.2.0"
+
+[[projects]]
+  name = "github.com/go-pg/pg"
+  packages = [
+    ".",
+    "internal",
+    "internal/parser",
+    "internal/pool",
+    "orm",
+    "types"
+  ]
+  revision = "514bed76d8f579d6ff8d40294fa77e476a5c1b3f"
+  version = "v6.15.0"
+
+[[projects]]
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   revision = "aa810b61a9c79d51363740d207bb46cf8e620ed5"
   version = "v1.2.0"
+
+[[projects]]
+  name = "github.com/gorilla/context"
+  packages = ["."]
+  revision = "08b5f424b9271eedf6f9f0ce86cb9396ed337a42"
+  version = "v1.1.1"
+
+[[projects]]
+  name = "github.com/gorilla/securecookie"
+  packages = ["."]
+  revision = "e59506cc896acb7f7bf732d4fdf5e25f7ccd8983"
+  version = "v1.1.1"
+
+[[projects]]
+  name = "github.com/gorilla/sessions"
+  packages = ["."]
+  revision = "81547393f870a35be888759a606ba7bf71dbe5c7"
+  version = "v1.1.2"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/jinzhu/inflection"
+  packages = ["."]
+  revision = "04140366298a54a039076d798123ffa108fff46c"
 
 [[projects]]
   name = "github.com/json-iterator/go"
@@ -55,19 +107,22 @@
   version = "1.0.1"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/olegsobchuk/go-gin-app"
-  packages = [
-    "controllers",
-    "routes"
-  ]
-  revision = "09ca1f155d26d5ae32439d186e68c350d7446d96"
-
-[[projects]]
   name = "github.com/ugorji/go"
   packages = ["codec"]
   revision = "b4c50a2b199d93b13dc15e78929cfb23bfdf21ab"
   version = "v1.1.1"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/vmihailenco/sasl"
+  packages = ["."]
+  revision = "58bfd21040084b3e377ef748e559e2bd3e7c826e"
+
+[[projects]]
+  branch = "master"
+  name = "golang.org/x/crypto"
+  packages = ["pbkdf2"]
+  revision = "0e37d006457bf46f9e6692014ba72ef82c33022c"
 
 [[projects]]
   branch = "master"
@@ -90,6 +145,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "04696c8b332afe458dcd339d19185ab6147bb52cd36de7f699eb595fbfea84e7"
+  inputs-digest = "e344f755f8fca422371901f753e8a41838544ed9d00ceb9b50e25fbec6233e23"
   solver-name = "gps-cdcl"
   solver-version = 1

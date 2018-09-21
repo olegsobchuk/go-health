@@ -4,12 +4,16 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"github.com/olegsobchuk/go-health/models"
 )
 
 // Root root page
 func Root(c *gin.Context) {
+	session := sessions.Default(c)
+	session.Set("user", 22)
+	session.Save()
 	c.HTML(200, "base", gin.H{
 		"title": "Root page",
 	})
@@ -17,9 +21,11 @@ func Root(c *gin.Context) {
 
 // LogIn login user page
 func LogIn(c *gin.Context) {
+	session := sessions.Default(c)
 	c.HTML(200, "login", gin.H{
-		"title": "LogIn page",
-		"login": "user123",
+		"title":  "LogIn page",
+		"login":  "user123",
+		"cookie": session.Get("user"),
 	})
 }
 
