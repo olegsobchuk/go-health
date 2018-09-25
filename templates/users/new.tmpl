@@ -1,0 +1,21 @@
+{{define "content"}}
+  <form class="form" action="/users/create" method="post">
+    <div class="">
+      <label for="username">Username</label>
+      <input type="text" name="username" value="{{.user.Username}}">
+    </div>
+    <div class="">
+      <label for="email">Email</label>
+      <input type="text" name="email" value="{{.user.Email}}">
+    </div>
+    <div class="">
+      <label for="password">Password</label>
+      <input type="password" name="password" value="">
+    </div>
+    <div class="">
+      <label for="password_confirmation">Password Confirmation</label>
+      <input type="password" name="password_confirmation" value="">
+    </div>
+    <button type="submit" name="button">Log In</button>
+  </form>
+{{end}}

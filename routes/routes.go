@@ -10,4 +10,11 @@ func Attach(router *gin.Engine) {
 	router.GET("/", controllers.Root)
 	router.GET("/login", controllers.LogIn)
 	router.POST("/session", controllers.CreateSession)
+
+	// users grouping
+	users := router.Group("/users")
+	{
+		users.GET("/new", controllers.NewUser)
+		users.POST("/create", controllers.CreateUser)
+	}
 }
