@@ -3,18 +3,38 @@
     <div class="">
       <label for="username">Username</label>
       <input type="text" name="username" value="{{.user.Username}}">
+      {{if .errors}}
+        {{if index .errors "User.Username"}}
+          {{(index .errors "User.Username").Tag}}
+        {{end}}
+      {{end}}
     </div>
     <div class="">
       <label for="email">Email</label>
       <input type="text" name="email" value="{{.user.Email}}">
+      {{if .errors}}
+        {{if index .errors "User.Email"}}
+          {{(index .errors "User.Email").Tag}}
+        {{end}}
+      {{end}}
     </div>
     <div class="">
       <label for="password">Password</label>
       <input type="password" name="password" value="">
+      {{if .errors}}
+        {{if index .errors "User.Password"}}
+          {{(index .errors "User.Password").Tag}}
+        {{end}}
+      {{end}}
     </div>
     <div class="">
       <label for="password_confirmation">Password Confirmation</label>
       <input type="password" name="password_confirmation" value="">
+      {{if .errors}}
+        {{if index .errors "User.PasswordConfirmation"}}
+          {{(index .errors "User.PasswordConfirmation").Tag}}
+        {{end}}
+      {{end}}
     </div>
     <button type="submit" name="button">Log In</button>
   </form>
