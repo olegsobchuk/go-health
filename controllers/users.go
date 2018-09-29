@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -28,25 +27,11 @@ func CreateUser(c *gin.Context) {
 			"user":   user,
 		})
 
-		// TODO error handling
-		for _, v := range err.(validator.ValidationErrors) {
-			fmt.Println(v.FieldNamespace)
-			fmt.Println(v.NameNamespace)
-			fmt.Println(v.Field)
-			fmt.Println(v.Name)
-			fmt.Println(v.Tag)
-			fmt.Println(v.ActualTag)
-			fmt.Println(v.Kind)
-			fmt.Println(v.Type)
-			fmt.Println(v.Param)
-			fmt.Println(v.Value)
-		}
+		// Use for validations error handling
+		// for _, v := range err.(validator.ValidationErrors) {
 
-		e := err.(validator.ValidationErrors)
-
-		fmt.Printf("%#v", e["User.Email"])
-		fmt.Printf("%#v", err.(validator.ValidationErrors))
 	} else {
-		c.JSON(http.StatusOK, gin.H{"user": user})
+		user.Create()
+		c.Redirect(http.StatusMovedPermanently, "/")
 	}
 }

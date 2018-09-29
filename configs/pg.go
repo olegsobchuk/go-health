@@ -15,5 +15,4 @@ func Init() {
 		Database: "health",
 		Addr:     "127.0.0.1:5432",
 	})
-	defer DB.Close()
 }
