@@ -18,8 +18,10 @@ func init() {
       ADD COLUMN email text,
       ADD COLUMN username text,
       ADD COLUMN enc_password text,
+			ADD COLUMN confirmed_at timestamp without time zone,
       ADD COLUMN created_at timestamp without time zone NOT NULL,
       ADD COLUMN updated_at timestamp without time zone NOT NULL;
+			ALTER TABLE users ADD CONSTRAINT users_on_email UNIQUE (email);
     `)
 		return err
 	}, func(db migrations.DB) error {

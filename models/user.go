@@ -9,12 +9,13 @@ import (
 
 // User user struct
 type User struct {
-	ID                   int       `form:"id" json:"id" xml:"id"`
-	Email                string    `sql:"email,unique" form:"email" json:"email" xml:"email" binding:"required,email"`
-	Username             string    `sql:"username" form:"username" json:"username" xml:"username" binding:"required"`
-	Password             string    `sql:"-" form:"password" json:"password" xml:"password" binding:"required,min=6,max=24"`
-	PasswordConfirmation string    `sql:"-" form:"password_confirmation" json:"password_confirmation" xml:"password_confirmation" binding:"eqfield=Password,required"`
-	EncPassword          string    `sql:"enc_password"` // encripted password
+	ID                   int    `form:"id" json:"id" xml:"id"`
+	Email                string `sql:",unique:idx_users_on_email" form:"email" json:"email" xml:"email" binding:"required,email"`
+	Username             string `sql:"username" form:"username" json:"username" xml:"username" binding:"required"`
+	Password             string `sql:"-" form:"password" json:"password" xml:"password" binding:"required,min=6,max=24"`
+	PasswordConfirmation string `sql:"-" form:"password_confirmation" json:"password_confirmation" xml:"password_confirmation" binding:"eqfield=Password,required"`
+	EncPassword          string `sql:"enc_password"` // encripted password
+	ConfirmedAt          time.Time
 	UpdatedAt            time.Time `sql:"default:now()"`
 	CreatedAt            time.Time `sql:"default:now()"`
 }

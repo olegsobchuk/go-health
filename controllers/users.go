@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -31,7 +32,8 @@ func CreateUser(c *gin.Context) {
 		// for _, v := range err.(validator.ValidationErrors) {
 
 	} else {
-		user.Create()
-		c.Redirect(http.StatusMovedPermanently, "/")
+		err := user.Create()
+		fmt.Printf("%#v\n", err)
+		c.Redirect(301, "/")
 	}
 }
