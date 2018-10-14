@@ -7,7 +7,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/olegsobchuk/go-health/models"
 	validator "gopkg.in/go-playground/validator.v8"
-	pg "gopkg.in/pg.v6"
 )
 
 // NewUser build new user form
@@ -33,23 +32,12 @@ func CreateUser(c *gin.Context) {
 		// for _, v := range err.(validator.ValidationErrors) {
 
 	} else {
-		err := user.Create()
+		res, err := user.Create()
 		if err != nil {
-			dbErr, ok := err.(pg.Error)
-			fmt.Printf("Column name: %#v\n", dbErr.Field('c'))
-			fmt.Printf("Constraint name: %#v\n", dbErr.Field('n'))
-			fmt.Printf("Where: %#v\n", dbErr.Field('W'))
-			fmt.Printf("Detail: %#v\n", dbErr.Field('D'))
-			fmt.Printf("Message: %#v\n", dbErr.Field('M'))
-			fmt.Printf("Code: %#v\n", dbErr.Field('C'))
-			fmt.Printf("Position: %#v\n", dbErr.Field('P'))
-			fmt.Printf("Table name: %#v\n", dbErr.Field('t'))
-			if ok && dbErr.IntegrityViolation() {
-				fmt.Printf("OK: %#v\n", ok)
-				fmt.Printf("Err: %#v\n", dbErr.IntegrityViolation())
-			}
 		}
-		fmt.Printf("%#v\n", err)
+		fmt.Printf("VALUE: %#v\n", res.Value)
+		fmt.Printf("ERROR: %#v\n", res.Error)
+		fmt.Printf("USER: %#v\n", *user)
 		c.Redirect(301, "/")
 	}
 }
