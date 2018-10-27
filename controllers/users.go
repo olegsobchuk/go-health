@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -22,8 +21,6 @@ func NewUser(c *gin.Context) {
 func CreateUser(c *gin.Context) {
 	var user = new(models.User)
 	if err := c.ShouldBind(user); err != nil {
-		fmt.Printf("ERR: %#v\n", err)
-		fmt.Printf("ERR: %#v\n", err.(validator.ValidationErrors))
 		c.HTML(http.StatusUnauthorized, "newUser", gin.H{
 			"title":  "New User Page",
 			"errors": err.(validator.ValidationErrors),

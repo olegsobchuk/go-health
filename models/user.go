@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"reflect"
 	"time"
 
@@ -38,7 +37,6 @@ func (user *User) Create() (*gorm.DB, error) {
 		return nil, err
 	}
 	user.EncPassword = string(hash)
-	fmt.Printf("%+v\n", configs.DB)
 	v := configs.DB.Create(user)
 	return v, err
 }

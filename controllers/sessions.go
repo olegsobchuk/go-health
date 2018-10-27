@@ -5,7 +5,9 @@ import (
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/olegsobchuk/go-health/configs"
 	"github.com/olegsobchuk/go-health/models"
+	"github.com/olegsobchuk/go-health/services/secret"
 )
 
 // Root root page
@@ -27,15 +29,18 @@ func LogIn(c *gin.Context) {
 
 // CreateSession login user page
 func CreateSession(c *gin.Context) {
+	// bind user from form
 	var user models.User
-	if err := c.ShouldBind(&user); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-	}
-	if user.Email != "uder123" && user.Password != "123456" {
+	c.ShouldBind(&user)
+	// get user from DB by email
+	var userDB models.User
+	configs.DB.Debug().Find(&userDB, map[string]interface{}{"email": user.Email})
+	// match encrypted password
+	if !configs.DB.NewRecord(userDB) && secret.Check(userDB.EncPassword, user.Password) {
 		session := sessions.Default(c)
-		session.Set("user", 22)
+		session.Set("userID", userDB.ID)
 		session.Save()
-		c.JSON(http.StatusNotFound, gin.H{"error": "User not found"})
+		c.Redirect(http.StatusMovedPermanently, "/")
 	}
-	c.Redirect(http.StatusMovedPermanently, "/")
+	c.JSON(http.StatusNotFound, gin.H{"error": "User not found or password incorrect"})
 }
