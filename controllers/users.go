@@ -22,6 +22,8 @@ func NewUser(c *gin.Context) {
 func CreateUser(c *gin.Context) {
 	var user = new(models.User)
 	if err := c.ShouldBind(user); err != nil {
+		fmt.Printf("ERR: %#v\n", err)
+		fmt.Printf("ERR: %#v\n", err.(validator.ValidationErrors))
 		c.HTML(http.StatusUnauthorized, "newUser", gin.H{
 			"title":  "New User Page",
 			"errors": err.(validator.ValidationErrors),
@@ -32,12 +34,10 @@ func CreateUser(c *gin.Context) {
 		// for _, v := range err.(validator.ValidationErrors) {
 
 	} else {
-		res, err := user.Create()
+		_, err := user.Create()
 		if err != nil {
+			// set message *something come up* and redirect
 		}
-		fmt.Printf("VALUE: %#v\n", res.Value)
-		fmt.Printf("ERROR: %#v\n", res.Error)
-		fmt.Printf("USER: %#v\n", *user)
 		c.Redirect(301, "/")
 	}
 }
