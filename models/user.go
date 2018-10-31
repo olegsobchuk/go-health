@@ -13,7 +13,7 @@ import (
 
 // User user struct
 type User struct {
-	gorm.Model
+	ID                   uint
 	Email                string `gorm:"not null;unique" form:"email" json:"email" xml:"email" binding:"required,email,uniquseremail"`
 	Username             string `gorm:"column:username" form:"username" json:"username" xml:"username" binding:"required"`
 	Password             string `gorm:"-" form:"password" json:"password" xml:"password" binding:"required,min=6,max=24"`
@@ -21,6 +21,9 @@ type User struct {
 	EncPassword          string `gorm:"column:enc_password"` // encripted password
 	ConfirmedAt          time.Time
 	Sources              []Source
+	UpdatedAt            time.Time  `form:"-"`
+	CreatedAt            time.Time  `form:"-"`
+	DeletedAt            *time.Time `form:"-"`
 }
 
 func init() {

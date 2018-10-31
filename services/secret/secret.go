@@ -1,6 +1,8 @@
 package secret
 
-import "golang.org/x/crypto/bcrypt"
+import (
+	"golang.org/x/crypto/bcrypt"
+)
 
 // Hash make crypt string
 func Hash(str string) (string, error) {
