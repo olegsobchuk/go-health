@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -37,4 +38,14 @@ func CreateUser(c *gin.Context) {
 		}
 		c.Redirect(301, "/")
 	}
+}
+
+// ShowUser shows information about user
+func ShowUser(c *gin.Context) {
+	fmt.Println(2)
+	user := currentUser(c)
+	fmt.Printf("%#v\n", user)
+	c.HTML(200, "showUser", gin.H{
+		"currentUser": user,
+	})
 }

@@ -13,7 +13,8 @@ import (
 // Root root page
 func Root(c *gin.Context) {
 	c.HTML(200, "base", gin.H{
-		"title": "Root page",
+		"title":       "Root page",
+		"currentUser": currentUser(c),
 	})
 }
 
@@ -34,7 +35,7 @@ func CreateSession(c *gin.Context) {
 	c.ShouldBind(&user)
 	// get user from DB by email
 	var userDB models.User
-	configs.DB.Debug().Find(&userDB, map[string]interface{}{"email": user.Email})
+	configs.DB.Find(&userDB, map[string]interface{}{"email": user.Email})
 	// match encrypted password
 	if !configs.DB.NewRecord(userDB) && secret.Check(userDB.EncPassword, user.Password) {
 		session := sessions.Default(c)

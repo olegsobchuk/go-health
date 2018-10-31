@@ -1,8 +1,13 @@
 package routes
 
 import (
+	"net/http"
+
+	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
+	"github.com/olegsobchuk/go-health/configs"
 	"github.com/olegsobchuk/go-health/controllers"
+	"github.com/olegsobchuk/go-health/models"
 )
 
 // Attach runs all existing routes
@@ -12,9 +17,25 @@ func Attach(router *gin.Engine) {
 	router.POST("/session", controllers.CreateSession)
 
 	// users grouping
+	router.GET("/users/new", controllers.NewUser)
+	router.POST("/users/create", controllers.CreateUser)
 	users := router.Group("/users")
 	{
-		users.GET("/new", controllers.NewUser)
-		users.POST("/create", controllers.CreateUser)
+		users.Use(checkCurrentUser())
+		users.GET("/show", controllers.ShowUser)
+	}
+}
+
+func checkCurrentUser() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		session := sessions.Default(c)
+		userID := session.Get("userID")
+		user := new(models.User)
+		configs.DB.First(&user, userID)
+		if configs.DB.NewRecord(user) {
+			c.Redirect(http.StatusPermanentRedirect, "/login")
+		} else {
+			c.Next()
+		}
 	}
 }
