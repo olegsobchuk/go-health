@@ -24,6 +24,15 @@ func Attach(router *gin.Engine) {
 		users.Use(checkCurrentUser())
 		users.GET("/show", controllers.ShowUser)
 	}
+	source := router.Group("/sources")
+	{
+		source.Use(checkCurrentUser())
+		source.GET("/index", controllers.IndexSources)
+		// source.GET("/new")
+		// source.POST("/create")
+		// source.GET("/edit")
+		// source.PATCH("/update")
+	}
 }
 
 func checkCurrentUser() gin.HandlerFunc {

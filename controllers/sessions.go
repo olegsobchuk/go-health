@@ -42,7 +42,7 @@ func CreateSession(c *gin.Context) {
 		session.Set("userID", userDB.ID)
 		session.Save()
 		c.Redirect(http.StatusMovedPermanently, "/")
-		return
+		c.Abort()
 	}
 	c.JSON(http.StatusNotFound, gin.H{"error": "User not found or password incorrect"})
 }
