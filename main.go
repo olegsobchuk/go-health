@@ -30,5 +30,6 @@ func buildTemplate() multitemplate.Renderer {
 	r.AddFromFiles("login", "templates/layouts/main.tmpl", "templates/session/login.tmpl")
 	r.AddFromFiles("newUser", "templates/layouts/main.tmpl", "templates/users/new.tmpl")
 	r.AddFromFiles("showUser", "templates/layouts/main.tmpl", "templates/users/show.tmpl")
+	r.AddFromFiles("sources", "templates/layouts/main.tmpl", "templates/sources/index.tmpl")
 	return r
 }
