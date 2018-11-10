@@ -8,12 +8,20 @@ import (
 )
 
 func currentUser(c *gin.Context) *models.User {
-	session := sessions.Default(c)
-	userID := session.Get("userID")
 	user := models.User{}
-	configs.DB.First(&user, userID)
+	configs.DB.First(&user, currentUserID(c))
 	if configs.DB.NewRecord(user) {
 		return nil
 	}
 	return &user
+}
+
+func currentUserID(c *gin.Context) uint {
+	session := sessions.Default(c)
+	ID := session.Get("userID")
+	userID, ok := ID.(uint)
+	if !ok {
+		panic("can't convert currentUserID to uint type")
+	}
+	return userID
 }

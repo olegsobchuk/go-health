@@ -20,6 +20,7 @@ func init() {
       ADD COLUMN user_id integer,
       ADD COLUMN created_at timestamp without time zone NOT NULL,
       ADD COLUMN updated_at timestamp without time zone NOT NULL;
+      ADD COLUMN deleted_at timestamp without time zone;
     `)
 		return err
 	}, func(db migrations.DB) error {

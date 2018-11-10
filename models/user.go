@@ -1,3 +1,4 @@
+// Package models User
 package models
 
 import (
@@ -20,10 +21,10 @@ type User struct {
 	PasswordConfirmation string `gorm:"-" form:"password_confirmation" json:"password_confirmation" xml:"password_confirmation" binding:"eqfield=Password,required"`
 	EncPassword          string `gorm:"column:enc_password"` // encripted password
 	ConfirmedAt          time.Time
-	Sources              []Source
 	UpdatedAt            time.Time  `form:"-"`
 	CreatedAt            time.Time  `form:"-"`
 	DeletedAt            *time.Time `form:"-"`
+	Sources              []Source
 }
 
 func init() {
