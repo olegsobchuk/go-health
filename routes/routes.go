@@ -44,6 +44,7 @@ func checkCurrentUser() gin.HandlerFunc {
 		if configs.DB.NewRecord(user) {
 			c.Redirect(http.StatusPermanentRedirect, "/login")
 		} else {
+			c.Set("currentUser", user)
 			c.Next()
 		}
 	}
