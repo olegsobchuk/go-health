@@ -41,7 +41,7 @@ func CreateUser(c *gin.Context) {
 
 // ShowUser shows information about user
 func ShowUser(c *gin.Context) {
-	user := currentUser(c)
+	user := c.MustGet("currentUser")
 	c.HTML(200, "showUser", gin.H{
 		"currentUser": user,
 	})
