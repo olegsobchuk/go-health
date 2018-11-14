@@ -1,0 +1,20 @@
+{{define "content"}}
+  <h1>New source</h1>
+  <form class="" action="/sources/create" method="post">
+    <label for="url">URL</label>
+    <input type="text" name="url" value="{{.source.URL}}">
+    {{if .errors}}
+      {{if index .errors "Source.URL"}}
+        {{(index .errors "Source.URL").Tag}}
+      {{end}}
+    {{end}}
+    <label for="status">Status</label>
+    <input type="checkbox" name="status" value="1" checked="{{if .source.Status}}checked{{end}}">
+    {{if .errors}}
+      {{if index .errors "Source.Status"}}
+        {{(index .errors "Source.Status").Tag}}
+      {{end}}
+    {{end}}
+    <input type="submit" value="Create">
+  </form>
+{{end}}

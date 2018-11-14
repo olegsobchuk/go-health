@@ -28,8 +28,8 @@ func Attach(router *gin.Engine) {
 	{
 		source.Use(checkCurrentUser())
 		source.GET("/index", controllers.IndexSources)
-		// source.GET("/new")
-		// source.POST("/create")
+		source.GET("/new", controllers.NewSource)
+		source.POST("/create", controllers.CreateSource)
 		// source.GET("/edit")
 		// source.PATCH("/update")
 	}
