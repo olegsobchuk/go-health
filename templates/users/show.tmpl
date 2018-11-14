@@ -13,8 +13,8 @@
       <tr>
         <td>{{.currentUser.ID}}</td>
         <td>{{.currentUser.Email}}</td>
-        <td>{{.currentUser.UpdatedAt}}</td>
-        <td>{{.currentUser.CreatedAt}}</td>
+        <td>{{.currentUser.UpdatedAt.Format "02/01/2006 15:06"}}</td>
+        <td>{{.currentUser.CreatedAt.Format "02/01/2006 15:06"}}</td>
       </tr>
     </tbody>
   </table>
