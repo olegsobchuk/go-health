@@ -51,3 +51,13 @@ func CreateSource(c *gin.Context) {
 		c.Redirect(301, "/sources/index")
 	}
 }
+
+// DestroySource deletes Source
+func DestroySource(c *gin.Context) {
+	// should be implemented via AJAX
+	user := currentUser
+	id := c.Query("id")
+	configs.DB.Model(&user).Association("Sources").Delete(id)
+	// configs.DB.Model(&user).Related(&sources).Delete(id) // TODO: remove if previous works
+	c.Redirect(301, "/sources/index")
+}

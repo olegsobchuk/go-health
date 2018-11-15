@@ -32,6 +32,7 @@ func Attach(router *gin.Engine) {
 		source.POST("/create", controllers.CreateSource)
 		// source.GET("/edit")
 		// source.PATCH("/update")
+		source.DELETE("/:id/destroy", controllers.DestroySource)
 	}
 }
 

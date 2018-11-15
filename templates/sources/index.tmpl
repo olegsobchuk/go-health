@@ -10,6 +10,7 @@
         <th>URL</th>
         <th>Status</th>
         <th>Created At</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,9 @@
           <td>{{$source.URL}}</td>
           <td>{{$source.Status}}</td>
           <td>{{$source.CreatedAt.Format "01/02/2006 15:04:05"}}</td>
+          <td>
+            <a href="/sources/{{$source.ID}}/destroy" data-confirm="Are you sure?" data-method="delete" rel="nofollow">Delete</a>
+          </td>
         </tr>
       {{end}}
     </tbody>
