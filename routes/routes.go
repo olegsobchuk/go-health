@@ -30,8 +30,8 @@ func Attach(router *gin.Engine) {
 		source.GET("/index", controllers.IndexSources)
 		source.GET("/new", controllers.NewSource)
 		source.POST("/create", controllers.CreateSource)
-		// source.GET("/edit")
-		// source.PATCH("/update")
+		source.PATCH("/update", controllers.UpdateSource)
+		source.DELETE("/:id/destroy", controllers.DestroySource)
 	}
 }
 
