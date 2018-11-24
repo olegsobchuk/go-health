@@ -19,6 +19,9 @@ func currentUser(c *gin.Context) *models.User {
 func currentUserID(c *gin.Context) uint {
 	session := sessions.Default(c)
 	ID := session.Get("userID")
+	if ID == nil {
+		return 0
+	}
 	userID, ok := ID.(uint)
 	if !ok {
 		panic("can't convert currentUserID to uint type")
