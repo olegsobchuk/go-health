@@ -1,0 +1,21 @@
+{{define "content"}}
+  <h1>User info</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Updated At</th>
+        <th>Created At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{.currentUser.ID}}</td>
+        <td>{{.currentUser.Email}}</td>
+        <td>{{.currentUser.UpdatedAt.Format "02/01/2006 15:06"}}</td>
+        <td>{{.currentUser.CreatedAt.Format "02/01/2006 15:06"}}</td>
+      </tr>
+    </tbody>
+  </table>
+{{end}}

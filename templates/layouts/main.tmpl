@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>Health Checker - {{ .title }}</title>
     <style type="text/css" media="screen">
-      @import url("/assets/css/main.css");
+      @import url("/assets/css/base.css");
     </style>
   </head>
   <body>
@@ -12,6 +12,8 @@
     <br>
     {{if .currentUser}}
       <a href="/logout">Log Out</a>
+      <a href="/users/show">Profile</a>
+      <a href="/sources/index">Sources</a>
     {{else}}
       <a href="/login">Log In</a> or <a href="/users/new">Sign Up</a> to start
     {{end}}
