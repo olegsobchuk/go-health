@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/olegsobchuk/go-health/models"
-	validator "gopkg.in/go-playground/validator.v8"
+	validator "gopkg.in/go-playground/validator.v9"
 )
 
 // NewUser build new user form
