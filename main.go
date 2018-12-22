@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/olegsobchuk/go-health/configs"
 	"github.com/olegsobchuk/go-health/routes"
+	"github.com/olegsobchuk/go-health/routes/api"
 )
 
 const secretKey = "KJHSAD&*&ASDJSDH87asd!@01"
@@ -20,6 +21,7 @@ func main() {
 	router.HTMLRender = buildTemplate()
 	configs.Init()
 	routes.Attach(router)
+	api.AttachV1(router)
 
 	router.Run(":9000")
 }
