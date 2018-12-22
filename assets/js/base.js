@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   // customize link methods
   $('a').click(function(event) {
     method = $(this).data('method')
@@ -7,11 +6,9 @@ $(document).ready(function(){
     methods = ['post', 'put', 'patch', 'delete']
     if (method && $.inArray(method.toLowerCase(), methods) != -1) {
       event.preventDefault()
-      $.ajax({
-        url: url,
-        dataType: 'html',
-        method: method
-      })
+      form = $('<form/>').attr('action', url).attr( 'method', method)
+      console.log(form);
+      form.appendTo('body').submit()
     }
   })
 });

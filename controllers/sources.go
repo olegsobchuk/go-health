@@ -3,7 +3,6 @@ package controllers
 import (
   "net/http"
   "strconv"
-  "fmt"
 
   "github.com/gin-gonic/gin"
   "github.com/olegsobchuk/go-health/configs"
@@ -65,9 +64,7 @@ func DestroySource(c *gin.Context) {
   if err == nil {
     source := models.Source{ID: uint(sourceID)}
     configs.DB.Model(curUser).Association("Sources").Find(&source)
-    fmt.Printf("%#v\n", source)
     configs.DB.Delete(&source)
-    fmt.Printf("%#v\n", source)
   }
   c.Redirect(http.StatusMovedPermanently, "/")
 }
