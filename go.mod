@@ -4,6 +4,7 @@ require (
 	cloud.google.com/go v0.33.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/denisenkom/go-mssqldb v0.0.0-20181014144952-4e0d7dc8888f // indirect
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 // indirect
 	github.com/gin-contrib/multitemplate v0.0.0-20180827023943-5799bbbb6dce
 	github.com/gin-contrib/sessions v0.0.0-20180827025425-58cbcf30135c

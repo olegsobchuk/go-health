@@ -1,18 +1,18 @@
 package main
 
 import (
-	"fmt"
+  "fmt"
 
-	"github.com/go-pg/migrations"
+  "github.com/go-pg/migrations"
 )
 
 func init() {
-	migrations.Register(func(db migrations.DB) error {
-		fmt.Println("creating table sources...")
-		if _, err := db.Exec(`CREATE TABLE sources()`); err != nil {
-			return err
-		}
-		_, err := db.Exec(`
+  migrations.Register(func(db migrations.DB) error {
+    fmt.Println("creating table sources...")
+    if _, err := db.Exec(`CREATE TABLE sources()`); err != nil {
+      return err
+    }
+    _, err := db.Exec(`
       ALTER TABLE sources
       ADD COLUMN id SERIAL PRIMARY KEY,
       ADD COLUMN url text,
@@ -22,10 +22,10 @@ func init() {
       ADD COLUMN updated_at timestamp without time zone NOT NULL;
       ADD COLUMN deleted_at timestamp without time zone;
     `)
-		return err
-	}, func(db migrations.DB) error {
-		fmt.Println("dropping table sources...")
-		_, err := db.Exec(`DROP TABLE sources`)
-		return err
-	})
+    return err
+  }, func(db migrations.DB) error {
+    fmt.Println("dropping table sources...")
+    _, err := db.Exec(`DROP TABLE sources`)
+    return err
+  })
 }
