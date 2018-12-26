@@ -19,7 +19,8 @@ func main() {
 	router.Static("/assets", "./assets")
 	router.LoadHTMLGlob("templates/*/**")
 	router.HTMLRender = buildTemplate()
-	configs.Init()
+	configs.InitDB()
+	configs.InitKV()
 	routes.Attach(router)
 	api.AttachV1(router)
 

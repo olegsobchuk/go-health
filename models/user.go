@@ -24,6 +24,7 @@ type User struct {
   UpdatedAt            time.Time  `form:"-"`
   CreatedAt            time.Time  `form:"-"`
   DeletedAt            *time.Time `form:"-"`
+  Token                string `json: "token"`
   Sources              []Source
 }
 
