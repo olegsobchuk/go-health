@@ -6,6 +6,7 @@ import (
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 	"github.com/olegsobchuk/go-health/configs"
+	"github.com/olegsobchuk/go-health/models"
 	"github.com/olegsobchuk/go-health/routes"
 	"github.com/olegsobchuk/go-health/routes/api"
 )
@@ -23,6 +24,9 @@ func main() {
 	configs.InitKV()
 	routes.Attach(router)
 	api.AttachV1(router)
+	var source models.Source
+
+	source.AddToKVStorage()
 
 	router.Run(":9000")
 }

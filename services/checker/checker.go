@@ -14,7 +14,6 @@ func Check(url string) bool {
 	resp, err := client.Get(url)
 	if err != nil || resp.StatusCode == 502 {
 		return false
-	} else {
-		return true
 	}
+	return true
 }
