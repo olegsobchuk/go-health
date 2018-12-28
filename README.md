@@ -25,3 +25,11 @@ go mod tidy
 go get ./...
 go mod vendor // if needed
 ```
+
+* Docker*
+
+list of containers `docker container ls -a`
+
+login to container `docker exec -it <NAME> sh`
+
+list of images `docker image ls`

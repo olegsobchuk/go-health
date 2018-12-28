@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  go-health:
+    image: go-health
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+        - 9000:9000

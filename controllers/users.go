@@ -5,7 +5,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/olegsobchuk/go-health/models"
-	validator "gopkg.in/go-playground/validator.v9"
 )
 
 // NewUser build new user form
@@ -23,7 +22,7 @@ func CreateUser(c *gin.Context) {
 	if err := c.ShouldBind(user); err != nil {
 		c.HTML(http.StatusUnauthorized, "newUser", gin.H{
 			"title":  "New User Page",
-			"errors": err.(validator.ValidationErrors),
+			"errors": err,
 			"user":   user,
 		})
 
