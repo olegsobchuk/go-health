@@ -2,13 +2,16 @@ module github.com/olegsobchuk/go-health
 
 require (
 	cloud.google.com/go v0.33.1 // indirect
+	github.com/cosiner/argv v0.0.1 // indirect
 	github.com/denisenkom/go-mssqldb v0.0.0-20181014144952-4e0d7dc8888f // indirect
+	github.com/derekparker/delve v1.1.0 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/erikstmartin/go-testdb v0.0.0-20160219214506-8d10e4a1bae5 // indirect
 	github.com/gin-contrib/multitemplate v0.0.0-20180827023943-5799bbbb6dce
 	github.com/gin-contrib/sessions v0.0.0-20180827025425-58cbcf30135c
 	github.com/gin-contrib/sse v0.0.0-20170109093832-22d885f9ecc7 // indirect
 	github.com/gin-gonic/gin v1.3.0
+	github.com/go-delve/delve v1.1.0 // indirect
 	github.com/go-pg/migrations v6.2.0+incompatible
 	github.com/go-pg/pg v6.15.0+incompatible
 	github.com/go-playground/locales v0.12.1 // indirect
@@ -29,8 +32,13 @@ require (
 	github.com/modern-go/reflect2 v0.0.0-20180701023420-4b7aa43c6742 // indirect
 	github.com/onsi/ginkgo v1.7.0 // indirect
 	github.com/onsi/gomega v1.4.3 // indirect
+	github.com/peterh/liner v1.1.0 // indirect
+	github.com/sirupsen/logrus v1.3.0 // indirect
+	github.com/spf13/cobra v0.0.3 // indirect
+	github.com/spf13/pflag v1.0.3 // indirect
 	github.com/ugorji/go v1.1.1 // indirect
 	github.com/vmihailenco/sasl v0.0.0-20180913092844-58bfd2104008 // indirect
+	golang.org/x/arch v0.0.0-20181203225421-5a4828bb7045 // indirect
 	golang.org/x/crypto v0.0.0-20180910181607-0e37d006457b
 	golang.org/x/net v0.0.0-20181114220301-adae6a3d119a // indirect
 	golang.org/x/sync v0.0.0-20181108010431-42b317875d0f // indirect

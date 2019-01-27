@@ -2,7 +2,7 @@
 package models
 
 import (
-	"strconv"
+	"fmt"
 	"time"
 
 	"github.com/jinzhu/gorm"
@@ -52,12 +52,13 @@ func (source *Source) CountActive() int {
 func (source *Source) AddToKVStorage() {
 	var count int
 	configs.DB.Scopes(AllActive).Count(&count)
-	var ids []int
+	var sources []Source
 	rounds := count / limit
 	for i := 0; i <= rounds; i++ {
-		configs.DB.Scopes(AllActive).Select("id").Offset(i*limit).Limit(limit).Pluck("id", &ids)
-		for _, id := range ids {
-			configs.KVClient.Set(strconv.Itoa(id), "ok", 10*time.Second)
+		configs.DB.Debug().Scopes(AllActive).Select([]string{"id", "url"}).Offset(i * limit).Limit(limit).Find(&sources)
+		fmt.Printf("%+v\n", sources)
+		for _, source := range sources {
+			configs.KVRegisterSource(strID, source.URL)
 		}
 	}
 }

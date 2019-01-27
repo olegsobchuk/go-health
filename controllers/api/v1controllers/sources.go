@@ -33,6 +33,9 @@ func CreateSource(c *gin.Context) {
 			if err != nil {
 				c.JSON(http.StatusBadRequest, gin.H{"status": "bad_request"})
 			} else {
+				if source.status {
+					configs.KVRegisterSource(source.ID, source.URL)
+				}
 				c.JSON(http.StatusCreated, gin.H{"status": "OK"})
 			}
 		} else {
@@ -57,6 +60,7 @@ func DeleteSource(c *gin.Context) {
 	source := models.Source{ID: uint(id)}
 
 	result := configs.DB.Model(&source).Where("user_id = ?", currentUser.(*models.User).ID).Delete(&source)
+	configs.KVUnregisterSource(source.ID)
 	c.JSON(http.StatusOK, gin.H{
 		"message": "ok",
 		"error":   result.Error,
