@@ -2,10 +2,17 @@ package configs
 
 import (
 	"errors"
+	"fmt"
 	"strconv"
 	"time"
 
 	"github.com/go-redis/redis"
+)
+
+// constants
+const (
+	AvailableSources = "availableSources"
+	sourcesCounter   = "sourcesCounter"
 )
 
 // KVClient is key-value pool
@@ -30,19 +37,28 @@ func KVRegisterSource(ID uint, URL string) {
 	exist := KVClient.Exists(strID).Val()
 	if exist == 0 {
 		KVClient.RPush(strID, nil, URL)
-		KVClient.Expire(strID, 30*time.Second) // temporary just for development
-		KVClient.SAdd("availableSources", strID)
-		KVClient.Incr("sourcesCounter")
+		KVClient.Expire(strID, 1130*time.Second) // temporary just for development
+		KVClient.SAdd(AvailableSources, strID)
+		KVClient.Incr(sourcesCounter)
 	}
 }
 
-// KVUnregisterSource adds source to list
+// KVUnregisterSource remove source from list
 func KVUnregisterSource(ID uint) {
 	strID := strconv.FormatUint(uint64(ID), 10)
 	exist := KVClient.Exists(strID).Val()
 	if exist != 0 {
 		KVClient.Del(strID) // temporary just for development
-		KVClient.SRem("availableSources", strID)
-		KVClient.Decr("sourcesCounter")
+		KVClient.SRem(AvailableSources, strID)
+		KVClient.Decr(sourcesCounter)
 	}
+}
+
+// UpdateSourceStatus updates existing status
+func UpdateSourceStatus(ID, status string) {
+	oldStatus := KVClient.Get(ID).String()
+	if oldStatus != status {
+		KVClient.Set(ID, status, 200)
+	}
+	fmt.Println("ID:", ID, "status:", status)
 }

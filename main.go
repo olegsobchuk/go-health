@@ -12,6 +12,7 @@ import (
 	"github.com/olegsobchuk/go-health/models"
 	"github.com/olegsobchuk/go-health/routes"
 	"github.com/olegsobchuk/go-health/routes/api"
+	"github.com/olegsobchuk/go-health/workers"
 )
 
 const secretKey = "KJHSAD&*&ASDJSDH87asd!@01"
@@ -32,6 +33,7 @@ func main() {
 	var source models.Source
 
 	source.AddToKVStorage()
+	workers.StartProcesses()
 
 	router.Run(":9000")
 }

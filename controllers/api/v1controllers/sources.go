@@ -33,7 +33,7 @@ func CreateSource(c *gin.Context) {
 			if err != nil {
 				c.JSON(http.StatusBadRequest, gin.H{"status": "bad_request"})
 			} else {
-				if source.status {
+				if source.Status {
 					configs.KVRegisterSource(source.ID, source.URL)
 				}
 				c.JSON(http.StatusCreated, gin.H{"status": "OK"})

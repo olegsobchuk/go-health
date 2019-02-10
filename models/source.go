@@ -2,7 +2,6 @@
 package models
 
 import (
-	"fmt"
 	"time"
 
 	"github.com/jinzhu/gorm"
@@ -55,10 +54,9 @@ func (source *Source) AddToKVStorage() {
 	var sources []Source
 	rounds := count / limit
 	for i := 0; i <= rounds; i++ {
-		configs.DB.Debug().Scopes(AllActive).Select([]string{"id", "url"}).Offset(i * limit).Limit(limit).Find(&sources)
-		fmt.Printf("%+v\n", sources)
+		configs.DB.Scopes(AllActive).Select([]string{"id", "url"}).Offset(i * limit).Limit(limit).Find(&sources)
 		for _, source := range sources {
-			configs.KVRegisterSource(strID, source.URL)
+			configs.KVRegisterSource(source.ID, source.URL)
 		}
 	}
 }
